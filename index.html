@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>MOIDEA - Presensi PKL</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+
+    background:
+    radial-gradient(circle at top left,#13203f 0%,transparent 40%),
+    radial-gradient(circle at bottom right,#001b2e 0%,transparent 40%),
+    linear-gradient(135deg,#050816,#091120,#0d1726);
+
+    color:white;
+}
+
+/* BACKGROUND GRID */
+
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:
+    linear-gradient(rgba(0,255,255,.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,.06) 1px, transparent 1px);
+
+    background-size:40px 40px;
+
+    animation:gridMove 15s linear infinite;
+}
+
+@keyframes gridMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(40px);
+    }
+}
+
+/* LOGIN CARD */
+
+.login-box{
+    position:relative;
+    width:370px;
+    padding:40px;
+
+    border-radius:28px;
+
+    background:rgba(8,15,30,.65);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(0,255,255,.15);
+
+    box-shadow:
+    0 0 25px rgba(0,140,255,.25),
+    0 0 80px rgba(0,255,255,.08);
+
+    z-index:10;
+}
+
+/* GLOW BORDER */
+
+.login-box::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+
+    border-radius:30px;
+
+    background:linear-gradient(
+    45deg,
+    #00e5ff,
+    #007cff,
+    #7a5cff,
+    #00ffb3
+    );
+
+    z-index:-1;
+
+    filter:blur(18px);
+    opacity:.45;
+}
+
+/* LOGO */
+
+.logo{
+    text-align:center;
+    margin-bottom:10px;
+}
+
+.logo h1{
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:5px;
+
+    background:linear-gradient(
+    90deg,
+    #00e5ff,
+    #007cff,
+    #00ffb3
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:shine 4s linear infinite;
+}
+
+@keyframes shine{
+    0%{
+        filter:drop-shadow(0 0 6px #00e5ff);
+    }
+
+    50%{
+        filter:drop-shadow(0 0 18px #007cff);
+    }
+
+    100%{
+        filter:drop-shadow(0 0 6px #00ffb3);
+    }
+}
+
+.subtitle{
+    text-align:center;
+    font-size:13px;
+    color:#8fb7ff;
+    margin-bottom:35px;
+}
+
+/* INPUT */
+
+.input-group{
+    margin-bottom:20px;
+}
+
+.input-group input{
+    width:100%;
+    padding:15px 18px;
+
+    border:none;
+    outline:none;
+
+    border-radius:14px;
+
+    background:rgba(255,255,255,.06);
+
+    color:white;
+
+    font-size:14px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+}
+
+.input-group input:focus{
+    border:1px solid #00e5ff;
+
+    box-shadow:
+    0 0 10px rgba(0,229,255,.5);
+}
+
+/* BUTTON */
+
+.login-btn{
+    width:100%;
+    padding:15px;
+
+    border:none;
+    border-radius:14px;
+
+    cursor:pointer;
+
+    font-weight:700;
+    font-size:15px;
+
+    color:white;
+
+    background:linear-gradient(
+    90deg,
+    #007cff,
+    #00bfff,
+    #00ffb3
+    );
+
+    background-size:300%;
+
+    transition:.3s;
+
+    animation:buttonFlow 5s linear infinite;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+
+    box-shadow:
+    0 0 20px rgba(0,255,255,.45);
+}
+
+@keyframes buttonFlow{
+    0%{
+        background-position:0%;
+    }
+
+    100%{
+        background-position:300%;
+    }
+}
+
+/* FOOTER */
+
+.footer{
+    margin-top:22px;
+    text-align:center;
+    font-size:11px;
+    color:#7d91b5;
+}
+
+/* FLOATING PARTICLES */
+
+.particle{
+    position:absolute;
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#00e5ff;
+
+    box-shadow:0 0 12px #00e5ff;
+
+    animation:float 8s linear infinite;
+}
+
+.p1{
+    top:10%;
+    left:15%;
+}
+
+.p2{
+    bottom:18%;
+    right:12%;
+    animation-delay:2s;
+}
+
+.p3{
+    top:70%;
+    left:10%;
+    animation-delay:4s;
+}
+
+@keyframes float{
+    0%{
+        transform:translateY(0px);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    80%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-120px);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="particle p1"></div>
+<div class="particle p2"></div>
+<div class="particle p3"></div>
+
+<div class="login-box">
+
+    <div class="logo">
+        <h1>MOIDEA</h1>
+    </div>
+
+    <div class="subtitle">
+        Sistem Presensi Praktik Kerja Lapangan
+    </div>
+
+    <div class="input-group">
+        <input type="text" placeholder="Username">
+    </div>
+
+    <div class="input-group">
+        <input type="password" placeholder="Password">
+    </div>
+
+    <button class="login-btn">
+        LOGIN ADMIN
+    </button>
+
+    <div class="footer">
+        © 2026 MOIDEA PRESENSI PKL
+    </div>
+
+</div>
+
+</body>
+</html>

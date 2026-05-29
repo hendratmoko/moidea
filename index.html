@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MOIDEA PRESENSI PKL</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family:'Poppins',sans-serif;
+
+    background:
+    radial-gradient(circle at top left,#13203f 0%,transparent 40%),
+    radial-gradient(circle at bottom right,#001b2e 0%,transparent 40%),
+    linear-gradient(135deg,#050816,#091120,#0d1726);
+
+    color:white;
+}
+
+/* GRID BACKGROUND */
+
+body::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background-image:
+    linear-gradient(rgba(0,255,255,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
+
+    background-size:30px 30px;
+
+    animation:gridMove 15s linear infinite;
+}
+
+@keyframes gridMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(30px);
+    }
+}
+
+/* LOGIN BOX */
+
+.login-box{
+    position:relative;
+
+    width:280px;
+    padding:28px;
+
+    border-radius:22px;
+
+    background:rgba(8,15,30,.68);
+
+    backdrop-filter:blur(15px);
+
+    border:1px solid rgba(0,255,255,.15);
+
+    box-shadow:
+    0 0 20px rgba(0,140,255,.25),
+    0 0 60px rgba(0,255,255,.08);
+
+    z-index:10;
+
+    text-align:center;
+}
+
+/* GLOW */
+
+.login-box::before{
+    content:"";
+    position:absolute;
+    inset:-2px;
+
+    border-radius:24px;
+
+    background:linear-gradient(
+    45deg,
+    #00e5ff,
+    #007cff,
+    #7a5cff,
+    #00ffb3
+    );
+
+    z-index:-1;
+
+    filter:blur(14px);
+    opacity:.35;
+}
+
+/* =========================
+   CYCLONE BOX
+========================= */
+
+.spinner-wrapper{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-bottom:18px;
+    perspective:800px;
+}
+
+/* From Uiverse.io by AqFox - modified */
+
+.spinner {
+ width: 26px;
+ height: 26px;
+ animation: spinner-y0fdc1 3s infinite ease;
+ transform-style: preserve-3d;
+}
+
+.spinner > div {
+ background: rgba(0,229,255,0.08);
+ position: absolute;
+ width: 100%;
+ height: 100%;
+ border: 1.5px solid #00cfff;
+
+ box-shadow:
+ 0 0 10px rgba(0,229,255,.35),
+ inset 0 0 10px rgba(0,229,255,.2);
+}
+
+.spinner div:nth-of-type(1) {
+ transform: translateZ(-13px) rotateY(180deg);
+}
+
+.spinner div:nth-of-type(2) {
+ transform: rotateY(-270deg) translateX(50%);
+ transform-origin: top right;
+}
+
+.spinner div:nth-of-type(3) {
+ transform: rotateY(270deg) translateX(-50%);
+ transform-origin: center left;
+}
+
+.spinner div:nth-of-type(4) {
+ transform: rotateX(90deg) translateY(-50%);
+ transform-origin: top center;
+}
+
+.spinner div:nth-of-type(5) {
+ transform: rotateX(-90deg) translateY(50%);
+ transform-origin: bottom center;
+}
+
+.spinner div:nth-of-type(6) {
+ transform: translateZ(13px);
+}
+
+@keyframes spinner-y0fdc1 {
+
+ 0% {
+  transform:
+  rotate(45deg)
+  rotateX(-25deg)
+  rotateY(25deg);
+ }
+
+ 50% {
+  transform:
+  rotate(45deg)
+  rotateX(-385deg)
+  rotateY(25deg);
+ }
+
+ 100% {
+  transform:
+  rotate(45deg)
+  rotateX(-385deg)
+  rotateY(385deg);
+ }
+
+}
+
+/* LOGO */
+
+.logo h1{
+    font-size:32px;
+    font-weight:800;
+    letter-spacing:4px;
+
+    background:linear-gradient(
+    90deg,
+    #00e5ff,
+    #007cff,
+    #00ffb3
+    );
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:shine 4s linear infinite;
+}
+
+@keyframes shine{
+
+    0%{
+        filter:drop-shadow(0 0 5px #00e5ff);
+    }
+
+    50%{
+        filter:drop-shadow(0 0 15px #007cff);
+    }
+
+    100%{
+        filter:drop-shadow(0 0 5px #00ffb3);
+    }
+
+}
+
+/* SUBTITLE */
+
+.subtitle{
+    margin-top:6px;
+    margin-bottom:24px;
+
+    font-size:10px;
+    color:#8fb7ff;
+}
+
+/* INPUT */
+
+.secret-input{
+    width:100%;
+    padding:12px 14px;
+
+    border:none;
+    outline:none;
+
+    border-radius:12px;
+
+    background:rgba(255,255,255,.06);
+
+    color:white;
+
+    font-size:11px;
+
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+}
+
+.secret-input:focus{
+
+    border:1px solid #00e5ff;
+
+    box-shadow:
+    0 0 10px rgba(0,229,255,.45);
+
+}
+
+/* FOOTER */
+
+.info{
+    margin-top:15px;
+
+    font-size:8px;
+    color:#7d91b5;
+}
+
+/* PARTICLES */
+
+.particle{
+    position:absolute;
+    width:4px;
+    height:4px;
+
+    border-radius:50%;
+
+    background:#00e5ff;
+
+    box-shadow:0 0 8px #00e5ff;
+
+    animation:float 8s linear infinite;
+}
+
+.p1{
+    top:10%;
+    left:15%;
+}
+
+.p2{
+    bottom:18%;
+    right:12%;
+    animation-delay:2s;
+}
+
+.p3{
+    top:70%;
+    left:10%;
+    animation-delay:4s;
+}
+
+@keyframes float{
+
+    0%{
+        transform:translateY(0px);
+        opacity:0;
+    }
+
+    20%{
+        opacity:1;
+    }
+
+    80%{
+        opacity:1;
+    }
+
+    100%{
+        transform:translateY(-90px);
+        opacity:0;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="particle p1"></div>
+<div class="particle p2"></div>
+<div class="particle p3"></div>
+
+<div class="login-box">
+
+    <!-- CYCLONE BOX -->
+    <div class="spinner-wrapper">
+        <div class="spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+
+    <!-- LOGO -->
+    <div class="logo">
+        <h1>MOIDEA</h1>
+    </div>
+
+    <div class="subtitle">
+        Sistem Presensi Praktik Kerja Lapangan
+    </div>
+
+    <!-- SECRET INPUT -->
+    <input
+        type="password"
+        class="secret-input"
+        id="secretKey"
+        placeholder="Masukkan Kode"
+        autofocus
+    >
+
+    <div class="info">
+        © 2026 MOIDEA PRESENSI PKL
+    </div>
+
+</div>
+
+<script>
+
+const input = document.getElementById("secretKey");
+
+input.addEventListener("input", function(){
+
+    if(input.value === "098@#$mnb"){
+
+        window.location.href =
+        "https://www.presensi.moidea.my.id";
+
+    }
+
+});
+
+</script>
+
+</body>
+  </html>

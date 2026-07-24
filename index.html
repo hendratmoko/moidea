@@ -287,35 +287,7 @@ body::before{
     </div>
 </div>
 <script>
-const GAS_URL = "https://script.google.com/macros/s/AKfycbzIv8OjAt8-AIqPy1XdW8pIiGc7EKxjJY8_9U5DpKRLQhO1UeXXNY5drd__Lz1106xWaQ/exec";
-document.getElementById("loginBtn").addEventListener("click", login);
-document.getElementById("secretKey").addEventListener("keydown", function(e){
-    if(e.key==="Enter"){
-        login();
-    }
-});
-function login(){
-    const password = document.getElementById("secretKey").value.trim();
-    fetch(GAS_URL,{
-        method:"POST",
-        body:JSON.stringify({
-            password:password
-        })
-    })
-    .then(r=>r.json())
-    .then(res=>{
-        if(res.success){
-            window.location.href = res.url;
-        }else{
-            alert("Password salah!");
-        }
-    })
-    .catch(err=>{
-        alert("Tidak dapat terhubung ke server.");
-        console.error(err);
-    });
-}    
-/*    
+    
 const input = document.getElementById("secretKey");
 input.addEventListener("input", function()
 {
@@ -333,7 +305,7 @@ input.addEventListener("input", function()
         "https://systemngl.moidea.my.id";
     }
 }); 
-*/
+
 </script>
 </body>
   </html>

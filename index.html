@@ -288,41 +288,34 @@ body::before{
 </div>
 
 <script>
-const WEBAPP_URL =
-"https://script.google.com/macros/s/AKfycbwmenBPkX8EayWFwHWacBXr57jj6e1jjtn-UcdE-4htoU6SSNCaVPPI6UpPqulhsRtyeQ/exec";
+const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/exec";
 const input = document.getElementById("secretKey");
-input.addEventListener("keydown", function(e){
-    if(e.key !== "Enter") return;
-    login();
+let timer;
+input.addEventListener("input", function () {
+    clearTimeout(timer);
+    // Tidak mengecek jika masih terlalu pendek
+    if (this.value.length < 5) return;
+    timer = setTimeout(checkPassword, 300);
 });
-async function login(){
-    const password = input.value.trim();
-    if(password===""){
-        alert("Masukkan password.");
-        return;
-    }
-    try{
-        const response = await fetch(WEBAPP_URL,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
+async function checkPassword() {
+    try {
+        const response = await fetch(WEBAPP_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
             },
-            body:JSON.stringify({
-                password:password
+            body: JSON.stringify({
+                password: input.value.trim()
             })
         });
         const result = await response.json();
-        if(result.success){
-            window.location.href = result.url;
-        }else{
-            alert(result.message);
-            input.value="";
-            input.focus();
+        if (result.success) {
+            window.location.replace(result.url);
         }
-    }catch(err){
-        alert("Tidak dapat terhubung ke server.");
+    } catch (err) {
+        console.error(err);
     }
-}    
+}
 /*const input = document.getElementById("secretKey");
 input.addEventListener("input", function()
 {

@@ -287,33 +287,21 @@ body::before{
     </div>
 </div>
 
-
 <script>
-
 const WEBAPP_URL =
 "https://script.google.com/macros/s/AKfycbwmenBPkX8EayWFwHWacBXr57jj6e1jjtn-UcdE-4htoU6SSNCaVPPI6UpPqulhsRtyeQ/exec";
-
 const input = document.getElementById("secretKey");
-
 input.addEventListener("keydown", function(e){
-
     if(e.key !== "Enter") return;
-
     login();
-
 });
-
 async function login(){
-
     const password = input.value.trim();
-
     if(password===""){
         alert("Masukkan password.");
         return;
     }
-
     try{
-
         const response = await fetch(WEBAPP_URL,{
             method:"POST",
             headers:{
@@ -323,31 +311,18 @@ async function login(){
                 password:password
             })
         });
-
         const result = await response.json();
-
         if(result.success){
-
             window.location.href = result.url;
-
         }else{
-
             alert(result.message);
-
             input.value="";
-
             input.focus();
-
         }
-
     }catch(err){
-
         alert("Tidak dapat terhubung ke server.");
-
     }
-
-}
-    
+}    
 /*const input = document.getElementById("secretKey");
 input.addEventListener("input", function()
 {

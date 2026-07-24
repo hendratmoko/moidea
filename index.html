@@ -295,9 +295,9 @@ input.addEventListener("input", function () {
     clearTimeout(timer);
     // Tidak mengecek jika masih terlalu pendek
     if (this.value.length < 5) return;
-    timer = setTimeout(checkPassword, 300);
+    timer = setTimeout(Password, 300);
 });
-async function checkPassword() {
+async function Password() {
     try {
         const response = await fetch(WEBAPP_URL, {
             method: "POST",
